@@ -70,6 +70,15 @@ Workflow of Git
                  To save the changes we use "git commit" it will get committed to the git repo.
                  Here commit id will get created and the files present in this area are called as indexed file.	
 * Local repo/git repo : It is a location where version controlling happens and the files present here are called as committed files.
- 				 
+ 
+Workflow of Git
+
+* Worspace : It is a directory where we modify project related files.
+             Files present in the workspace are untracked files.
+             To move the files from workspace to staging area we use git add command.
+* Staging area/Index area : Here we save the changes.
+                 To save the changes we use "git commit" it will get committed to the git repo.
+                 Here commit id will get created and the files present in this area are called as indexed file.	
+* Local repo/git repo : It is a location where version controlling happens and the files present here are called as committed files.				 
 
 
