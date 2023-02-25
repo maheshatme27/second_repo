@@ -1,0 +1,124 @@
+
+1.write a shell script to Execute free command, read the specified column from user and pass this variable to function.
+
+#!/bin/bash
+f1(){
+free -m
+}
+f2(){
+
+value1=$(free | awk 'NR==2 {print $2}')
+echo total ram is $value1
+value2=$(free | awk 'NR==2 {print $3}')
+echo used ram is $value2
+sum=$(( $value1-$value2 ))
+echo total unused mem is $sum
+}
+f1
+f2
+
+
+2.Create a file with size 10 mb in every min,for 15 mins
+at 16th min print all files names into a log file then delete all files and folder.
+Explain the functionalities in details .
+
+vi 1.sh
+#!/bin/bash
+echo "create files"
+fallocate -l 10M /home/ubuntu/shell/task/shtask
+vi 2.sh
+#!/bin/bash
+mv 1.sh log
+vi 3.sh
+#!/bin/bash
+rm -rf log
+create a crontab
+crontab -e
+add
+15 * * * * /bin/bash /home/ubuntu/shell/task/shtask/1.sh
+16 * * * *  /bin/bash /home/ubuntu/shell/task/shtask/2.sh
+16 * * * * /bin/bash /home/ubuntu/shell/task/shtask/3.sh
+
+
+3.Create a shell script which will look for the free memory every time ,
+ if free memory is less than 50% , then print the current memory & time into the log file and restart the system .
+
+#!/bin/bash
+f1(){
+value1=$(free | awk 'NR==2 {print $2}')
+echo total ram is $value1
+value2=$(free | awk 'NR==2 {print $3}')
+echo used ram is $value2
+sum=$(( $value1-$value2 ))
+echo total unused mem is $sum
+perc=$(( $value2 * 100 / $value1 ))
+echo percentage of used $perc
+if [ 50 -lt $perc ]
+then
+echo "current mem"
+else
+echo "restart"
+fi
+}
+f1
+
+
+5.Create a job for 'cron' and create a job for 'crontab' separately.
+what is the difference between cron and crontab?
+Specify where cron and crontab will be used?
+
+cron job <path>
+Create a new crontab file, or edit an existing file. $ crontab -e
+cron is the utility on the server
+Cron is the system's main scheduler for running jobs or tasks unattended
+crontab is a file which contains the time intervals 
+crontab It allows to use job scheduler, which is known as cron to execute tasks
+
+
+6.write a shell script to print below(tree) structure.
+
+#!/bin/bash
+rows=5
+for (( i=1;i<=rows;i++ ))
+do
+        for (( j=1;j<=rows-i;j++ ))
+do
+        echo -n " "
+done
+for (( j=1; j<=2*i-1; j++ ))
+do
+echo -n "-"
+done
+
+
+7.In function script, call only disc free method and append that into a file.
+try to execute that script in the folder where u created the program.
+come out and also execute outside the dir,
+then go to root directory and execute,
+total 3 files created in 3 different locations..but need to create only one file wherever you execute the script.
+
+#!/bin/bash
+f1free () {
+free
+}
+disc () {
+du -h
+}
+discfree () {
+df -h >> /home/ubuntu/shell/tsk.txt
+}
+unamef () {
+uname
+}
+psfun () {
+ps -aef
+}
+topfun () {
+top
+}
+grepfun () {
+echo " hi error this program " >  new.txt
+grep -o error new.txt
+}
+discfree
+
