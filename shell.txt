@@ -122,3 +122,5 @@ grep -o error new.txt
 }
 discfree
 
+hi
+mahesh
